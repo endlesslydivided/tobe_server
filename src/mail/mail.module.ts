@@ -13,12 +13,12 @@ import { MailService } from './mail.service';
         host: 'smtp.gmail.com',
         secure: false,
         auth: {
-          user: 'tobesocialweb@gmail.com',
+          user: 'tweetersocialweb@gmail.com',
           pass: 'vsconjsjdbrqheld',
         },
       },
       defaults: {
-        from: '"No Reply" tobesocialweb@gmail.com',
+        from: '"No Reply" tweetersocialweb@gmail.com',
       },
     
     }),

@@ -28,6 +28,10 @@ import { TweetCounts } from './tweet/tweetcounts.model';
 import { User } from './user/user.model';
 import { UserModule } from './user/user.module';
 import { UserCounts } from './user/userCounts.model';
+import { DiaryEntryModule } from './diary-entry/diary-entry.module';
+import { DiaryEntry } from './diary-entry/diary-entry.model';
+import { MessageMood } from './message/messageMood.model';
+import { BotMessageModule } from './bot-message/bot-message.module';
 
 
 @Module({
@@ -44,7 +48,9 @@ import { UserCounts } from './user/userCounts.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, Media,Tweet,LikedTweet,SavedTweet,Subscription,Dialog,Message,UserDialog,TweetCounts,UserCounts,FavoriteMessage],
+      models: [User, 
+        Media,
+        Tweet,LikedTweet,SavedTweet,Subscription,Dialog,Message,UserDialog,TweetCounts,UserCounts,FavoriteMessage, DiaryEntry,MessageMood],
       autoLoadModels: true,
       synchronize: false,
       
@@ -63,6 +69,8 @@ import { UserCounts } from './user/userCounts.model';
     DialogModule,
     MessageModule,
     ChatModule,
+    DiaryEntryModule,
+    BotMessageModule,
     
     ]
 })

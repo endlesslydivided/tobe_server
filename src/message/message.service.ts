@@ -10,6 +10,8 @@ import { User } from 'src/user/user.model';
 import { CreateMessageDto } from './dto/createMessage.dto';
 import { UpdateMessageDto } from './dto/updateMessage.dto';
 import { Message } from './message.model';
+import { CreateMessageMoodDto } from './dto/createMessageMood.dto';
+import { MessageMood } from './messageMood.model';
 
 @Injectable()
 export class MessageService {
@@ -17,6 +19,7 @@ export class MessageService {
     private logger: Logger = new Logger('MessageService');
 
     constructor(@InjectModel(Message) private messageRepository: typeof Message,
+    @InjectModel(MessageMood) private messageMoodRepository: typeof MessageMood,
     @Inject(forwardRef(() => MediaService)) private mediaService: MediaService,
     @InjectConnection() private readonly sequelizeInstance: Sequelize) {}
 
@@ -45,6 +48,27 @@ export class MessageService {
       }
       transaction.commit();
       return message;
+    }
+
+    async createMessageMood(dto: CreateMessageMoodDto) 
+    {   
+
+      const transaction: Transaction = await this.sequelizeInstance.transaction();
+      const {messageId,userId} = dto;
+      const messageMood = await this.messageMoodRepository.findOne({where:{[Op.and]:{messageId,userId}},transaction}).then((entry)=>
+      {
+        if(entry)
+          return entry.update(dto);
+          
+        return this.messageMoodRepository.create(dto);
+      }) 
+      .catch((error) => {
+        this.logger.error(`Message mood is not created: ${error.message}`);
+        transaction.rollback();
+        throw new InternalServerErrorException("Message mood is not created.Internal server error");
+      });        
+      transaction.commit();
+      return messageMood;
     }
 
     async getOneMessage(id: string) {

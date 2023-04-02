@@ -13,6 +13,10 @@ import { Dialog } from '../dialog/dialog.model';
 import { MediaModule } from '../media/media.module';
 import { UserCounts } from './userCounts.model';
 import { FavoriteMessage } from 'src/message/favoriteMessage.model';
+import { DiaryEntry } from 'src/diary-entry/diary-entry.model';
+import { BotMessage } from 'src/bot-message/diary-entry.model';
+import { MessageModule } from 'src/message/message.module';
+import { MessageMood } from 'src/message/messageMood.model';
 
 @Module({
   
@@ -20,7 +24,9 @@ import { FavoriteMessage } from 'src/message/favoriteMessage.model';
   controllers: [UserController],
   imports:[
     MediaModule,
-    SequelizeModule.forFeature([Tweet, User, SavedTweet,LikedTweet,Subscription,Media, Message,Dialog,UserCounts,FavoriteMessage]),
+    SequelizeModule.forFeature([
+      Tweet, User, SavedTweet,LikedTweet,Subscription,Media, Message,Dialog,UserCounts,FavoriteMessage,
+      DiaryEntry,BotMessage,MessageMood]),
   ],
   exports:[
     UserService

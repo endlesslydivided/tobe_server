@@ -10,5 +10,5 @@ export class UpdateMessageDto {
 
   @ApiProperty({ example: "true", description: "Is message a favorite one" })
   @IsOptional()
-  isFavorite: string;
+  isFavorite: boolean;
 }
