@@ -9,6 +9,10 @@ import QueryParameters from 'src/requestFeatures/query.params';
 import { UserService } from 'src/user/user.service';
 import { AuthJWTGuard } from '../auth/guards/auth.guard';
 import { CreateMessageDto } from '../message/dto/createMessage.dto';
+import * as brain from 'brain.js';
+import { Serializer } from 'src/neuralUtility/serializer';
+
+import * as activationFunction from '../neuralUtility/serializedDataModel.json'
 
 export enum ChatClientEvent 
 {
@@ -46,14 +50,22 @@ type Message = CreateMessageDto &
   })
 export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
+  
+  private logger: Logger = new Logger('ChatGateway');
+  private net :any;
+  private serializer :Serializer;
+
   constructor( @Inject(forwardRef(() => MessageService)) private messagesService: MessageService,
   @Inject(forwardRef(() => UserService)) private userService: UserService,
   @Inject(forwardRef(() => DialogService)) private dialogsService: DialogService)
   {
+    this.net = new brain.NeuralNetwork();
 
+    this.net.fromJSON(activationFunction)
+
+    //@ts-ignore
+    this.serializer = new Serializer(activationFunction.sizes[0]);
   }
-
-  private logger: Logger = new Logger('ChatGateway');
 
 
   @WebSocketServer() 
@@ -71,6 +83,28 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
       {message,user,dialogId:body.dto.dialogId});
     this.server.to(body.toUserId.toString()).emit(ChatClientEvent.SERVER_SENDS_MESSAGE, 
       {message,user,dialogId:body.dto.dialogId});
+    
+    const messageEstimated:any =  this.net.run(this.serializer.encode(message.text));
+    const {
+      angry:isAngry,
+      boredom:isBored,
+      happiness:isHappy,
+      fun:isJoke,
+      neutral:isNeutral,
+      sadness:isSad
+    } = messageEstimated;
+
+    await this.messagesService.createMessageMood({
+      messageId:message.id,
+      isNeuralEstimated:true,
+      isAngry,
+      isBored,
+      isHappy,
+      isJoke,
+      isNeutral,
+      isSad,
+      userId: null    
+    })
   }
 
   @SubscribeMessage(ChatServerEvent.CLIENT_SEND_TWEET)

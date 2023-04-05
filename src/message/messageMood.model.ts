@@ -8,13 +8,12 @@ interface MessageMoodCreationAttribute {
   userId: string;
   messageId: string;
   isNeuralEstimated: boolean;
-  isHappy: boolean;
-  isJoke: boolean;
-  isOffensive: boolean;
-  isAngry: boolean;
-  isBored: boolean;
-  isSad: boolean;
-  isNeutral: boolean;
+  isHappy: number;
+  isJoke: number;
+  isAngry: number;
+  isBored: number;
+  isSad: number;
+  isNeutral: number;
 }
 
 
@@ -40,33 +39,36 @@ export class MessageMood extends Model<MessageMood,MessageMoodCreationAttribute>
   @Column({ type: DataType.BOOLEAN, allowNull: true })
   isNeuralEstimated: boolean;
 
-  @ApiProperty({ example: "true", description: "Is message happy?" })
-  @Column({ type: DataType.BOOLEAN, allowNull: true })
-  isHappy: boolean;
 
-  @ApiProperty({ example: "true", description: "Is message a joke?" })
-  @Column({ type: DataType.BOOLEAN, allowNull: true })
-  isJoke: boolean;
+  @ApiProperty({ example: "1", description: "The value of happiness,expressed by an entry" })
+  @Default(0)
+  @Column({ type: DataType.DECIMAL(3,2), allowNull: true })
+  isHappy: number;
 
-  @ApiProperty({ example: "true", description: "Is message offensive?" })
-  @Column({ type: DataType.BOOLEAN, allowNull: true })
-  isOffensive: boolean;
+  @ApiProperty({ example: "1", description: "The value of joke,expressed by an entry" })
+  @Default(0)
+  @Column({ type: DataType.DECIMAL(3,2), allowNull: true })
+  isJoke: number;
 
-  @ApiProperty({ example: "true", description: "Is message happy?" })
-  @Column({ type: DataType.BOOLEAN, allowNull: true })
-  isAngry: boolean;
+  @ApiProperty({ example: "1", description: "The value of anger,expressed by an entry" })
+  @Default(0)
+  @Column({ type: DataType.DECIMAL(3,2), allowNull: true })
+  isAngry: number;
 
-  @ApiProperty({ example: "true", description: "Is message bore?" })
-  @Column({ type: DataType.BOOLEAN, allowNull: true })
-  isBored: boolean;
+  @ApiProperty({ example: "1", description: "The value of boredom,expressed by an entry" })
+  @Default(0)
+  @Column({ type: DataType.DECIMAL(3,2), allowNull: true })
+  isBored: number;
 
-  @ApiProperty({ example: "true", description: "Is message sad?" })
-  @Column({ type: DataType.BOOLEAN, allowNull: true })
-  isSad: boolean;
+  @ApiProperty({ example: "1", description: "The value of sadness,expressed by an entry" })
+  @Default(0)
+  @Column({ type: DataType.DECIMAL(3,2), allowNull: true })
+  isSad: number;
 
-  @ApiProperty({ example: "true", description: "Is message neutral?" })
-  @Column({ type: DataType.BOOLEAN, allowNull: true })
-  isNeutral: boolean;
+  @ApiProperty({ example: "1", description: "The value of neutrality,expressed by an entry" })
+  @Default(0)
+  @Column({ type: DataType.DECIMAL(3,2), allowNull: true })
+  isNeutral: number;
 
   @BelongsTo(() => User,"userId")
   user: User

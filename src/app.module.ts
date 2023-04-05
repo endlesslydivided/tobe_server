@@ -50,7 +50,18 @@ import { BotMessageModule } from './bot-message/bot-message.module';
       database: process.env.POSTGRES_DB,
       models: [User, 
         Media,
-        Tweet,LikedTweet,SavedTweet,Subscription,Dialog,Message,UserDialog,TweetCounts,UserCounts,FavoriteMessage, DiaryEntry,MessageMood],
+        Tweet,
+        LikedTweet,
+        SavedTweet,
+        Subscription,
+        Dialog,
+        Message,
+        UserDialog,
+        TweetCounts,
+        UserCounts,
+        FavoriteMessage,
+        DiaryEntry,
+        MessageMood],
       autoLoadModels: true,
       synchronize: false,
       
@@ -78,7 +89,7 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .forRoutes('/tweets','/savedTweets','/likedTweets','/users','/subscriptions','/dialogs',
+      .forRoutes('/tweets','/savedTweets','/likedTweets','/bot-message','/diary-entry','/message','/users','/subscriptions','/dialogs',
       '/auth/sessions','/auth/me','/auth/password')
     consumer
     .apply(RefreshMiddleware)

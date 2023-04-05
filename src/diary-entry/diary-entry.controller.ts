@@ -1,9 +1,12 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthJWTGuard } from 'src/auth/guards/auth.guard';
 import { DiaryEntryService } from './diary-entry.service';
 import { DiaryEntry } from './diary-entry.model';
 import { CreateDiaryEntryDto } from './dto/createDiaryEntry.dto';
+import { QueryParamsPipe } from 'src/requestFeatures/queryParams.pipe';
+import { CurrentUserArgs } from 'src/auth/decorators/currentUserArgs.decorator';
+import QueryParameters from 'src/requestFeatures/query.params';
 
 @ApiTags("Diary entry")
 @Controller('diary-entry')
@@ -16,7 +19,22 @@ export class DiaryEntryController {
     @ApiOperation({ summary: "Diary entry creation" })
     @ApiOkResponse({ type: DiaryEntry })
     @Post()
-    createDialog(@Body() diaryEntryDto: CreateDiaryEntryDto) {
+    createDiaryEntry(@Body() diaryEntryDto: CreateDiaryEntryDto) {
         return this.diaryEntryService.createDiaryEntry(diaryEntryDto);
+    }
+
+    @ApiOperation({ summary: 'Get diary entries' })
+    @ApiOkResponse({ type: '{rows:DiaryEntry[],count:number}' })
+    @Get()
+    getDiaryEntries(
+      @Query(new QueryParamsPipe()) filters: QueryParameters,
+      @CurrentUserArgs() currentUser: CurrentUserArgs
+    ): any {
+      return this.diaryEntryService.getDiaryEntries(filters,currentUser.userId);
+    }
+    @ApiOperation({ summary: 'Delete diary entries' })
+    @Delete(':id')
+    deleteTweet(@Param('id') id: string) {
+      return this.diaryEntryService.deleteDiaryEntry(id);
     }
 }

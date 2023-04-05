@@ -4,8 +4,9 @@ import {IsBoolean, IsOptional, IsString, Length } from "class-validator";
 export class CreateMessageMoodDto {
 
   @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "User's Id" })
+  @IsOptional()
   @IsString({ message: "Must be a string" })
-  userId: string;
+  userId: string|null;
 
   @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "Message's Id" })
   @IsString({ message: "Must be a string" })
@@ -17,40 +18,29 @@ export class CreateMessageMoodDto {
   @IsBoolean({ message: "Must be a bool value" })
   isNeuralEstimated: boolean;
   
-  @ApiProperty({ example: "true", description: "Is message happy?" })
+  @ApiProperty({ example: "1", description: "The value of happiness,expressed by an entry" })
   @IsOptional()
-  @IsBoolean({ message: "Must be a bool value" })
-  isHappy: boolean;
+  isHappy: number;
 
-  @ApiProperty({ example: "true", description: "Is message a joke?" })
+  @ApiProperty({ example: "1", description: "The value of joke,expressed by an entry" })
   @IsOptional()
-  @IsBoolean({ message: "Must be a bool value" })
-  isJoke: boolean;
+  isJoke: number;
 
-  @ApiProperty({ example: "true", description: "Is message offensive?" })
+  @ApiProperty({ example: "1", description: "The value of anger,expressed by an entry" })
   @IsOptional()
-  @IsBoolean({ message: "Must be a bool value" })
-  isOffensive: boolean;
+  isAngry: number;
 
-  @ApiProperty({ example: "true", description: "Is message happy?" })
+  @ApiProperty({ example: "1", description: "The value of boredom,expressed by an entry" })
   @IsOptional()
-  @IsBoolean({ message: "Must be a bool value" })
-  isAngry: boolean;
+  isBored: number;
 
-  @ApiProperty({ example: "true", description: "Is message bore?" })
+  @ApiProperty({ example: "1", description: "The value of sadness,expressed by an entry" })
   @IsOptional()
-  @IsBoolean({ message: "Must be a bool value" })
-  isBored: boolean;
+  isSad: number;
 
-  @ApiProperty({ example: "true", description: "Is message sad?" })
+  @ApiProperty({ example: "1", description: "The value of neutrality,expressed by an entry" })
   @IsOptional()
-  @IsBoolean({ message: "Must be a bool value" })
-  isSad: boolean;
-
-  @ApiProperty({ example: "true", description: "Is message neutral?" })
-  @IsOptional()
-  @IsBoolean({ message: "Must be a bool value" })
-  isNeutral: boolean;
+  isNeutral: number;
 
 
 }

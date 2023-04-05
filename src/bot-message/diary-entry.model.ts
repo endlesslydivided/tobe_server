@@ -28,7 +28,6 @@ export class BotMessage extends Model<BotMessage,BotMessageCreationAttribute> {
   text: string;
 
   @ApiProperty({ example: "true", description: "Is an entry used to store discussion session data" })
-  @Default(0)
   @Column({ type: DataType.BOOLEAN, allowNull: true })
   isTalkingSession: boolean;
 

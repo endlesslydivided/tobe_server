@@ -2,8 +2,9 @@ import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common
 import {  DiaryEntry } from './diary-entry.model';
 import { InjectConnection, InjectModel } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
-import { Transaction } from 'sequelize';
+import { Op, Transaction } from 'sequelize';
 import { CreateDiaryEntryDto } from './dto/createDiaryEntry.dto';
+import DBQueryParameters from 'src/requestFeatures/dbquery.params';
 @Injectable()
 export class DiaryEntryService {
 
@@ -25,4 +26,28 @@ export class DiaryEntryService {
         transaction.commit();
         return diaryEntry;
     }
+
+    async getDiaryEntries(filters : DBQueryParameters,currentUserId:string)
+    {   
+        const result = await this.diaryEntryRepository.findAndCountAll(
+        {
+            where:{createdAt:{ [Op.lt]:filters.createdAt}},
+            limit:filters.limit,
+            order:[...filters.order],
+        }).catch((error) => {
+          this.logger.error(`Diary entries aren't found: ${error.message}`);
+          throw new InternalServerErrorException("Diary entries aren't found. Internal server error.");
+        });
+  
+        return result;
+    }
+
+    async deleteDiaryEntry(id: string) 
+    {
+        return await this.diaryEntryRepository.destroy({ where: { id } }).catch((error) => {
+          this.logger.error(`Diary entry is not deleted: ${error.message}`);
+          throw new InternalServerErrorException("Diary entry is not deleted.Internal server error");
+        });;
+    }
+
 }
