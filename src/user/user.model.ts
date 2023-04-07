@@ -10,6 +10,9 @@ import { LikedTweet } from "src/tweet/likedTweet.model";
 import { SavedTweet } from "src/tweet/savedTweet.model";
 import { Tweet } from "src/tweet/tweet.model";
 import { UserCounts } from "./userCounts.model";
+import { MessageMood } from "src/message/messageMood.model";
+import { DiaryEntry } from "src/diary-entry/diary-entry.model";
+import { MentalCounts } from "./mentalCount.model";
 
   
 interface UserCreationAttribute {
@@ -150,5 +153,20 @@ export class User extends Model<User,UserCreationAttribute>
 
     @BelongsToMany(() => Message, () => FavoriteMessage,"userId")
     favoriteMessages: FavoriteMessage[];
+
+    @HasMany(() => MessageMood, {
+        foreignKey: "userId",
+        constraints: true, onDelete: "set null", onUpdate: "cascade"
+    })
+    messagesMoods: MessageMood[];
+
+    @HasMany(() => DiaryEntry, {
+        foreignKey: "userId",
+        constraints: true, onDelete: "set null", onUpdate: "cascade"
+    })
+    diaryEntries: DiaryEntry[];
+
+    @HasOne(() => MentalCounts,{as:'mentalCounts',foreignKey:'userMoodId'})
+    mentalCounts: MentalCounts
     
 }

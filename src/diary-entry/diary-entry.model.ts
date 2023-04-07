@@ -56,6 +56,11 @@ export class DiaryEntry extends Model<DiaryEntry,DiaryEntryCreationAttribute> {
   @Column({ type: DataType.BIGINT, allowNull: true })
   neutral: number;
 
+  @ApiProperty({ example: "09.04.2002", description: "Entry date" })
+  @Column({ type: DataType.DATE, allowNull: true })
+  entryDate: number;
+
+
   @BelongsTo(() => User,"userId")
   user: User
 

@@ -17,6 +17,7 @@ import { DiaryEntry } from 'src/diary-entry/diary-entry.model';
 import { BotMessage } from 'src/bot-message/diary-entry.model';
 import { MessageModule } from 'src/message/message.module';
 import { MessageMood } from 'src/message/messageMood.model';
+import { MentalCounts } from './mentalCount.model';
 
 @Module({
   
@@ -26,7 +27,7 @@ import { MessageMood } from 'src/message/messageMood.model';
     MediaModule,
     SequelizeModule.forFeature([
       Tweet, User, SavedTweet,LikedTweet,Subscription,Media, Message,Dialog,UserCounts,FavoriteMessage,
-      DiaryEntry,BotMessage,MessageMood]),
+      DiaryEntry,BotMessage,MessageMood, MentalCounts]),
   ],
   exports:[
     UserService

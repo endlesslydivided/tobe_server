@@ -5,6 +5,7 @@ import { User } from "src/user/user.model";
 import { Media } from "src/media/media.model";
 import { Tweet } from "src/tweet/tweet.model";
 import { FavoriteMessage } from "./favoriteMessage.model";
+import { MessageMood } from "./messageMood.model";
 
 
 interface MessageCreationAttribute {
@@ -53,4 +54,8 @@ export class Message extends Model<Message, MessageCreationAttribute> {
   //Retweeted tweet
   @BelongsTo(() => Tweet,"messageTweetId")
   messageTweet: Tweet
+
+   //Message's media
+   @HasMany(() => MessageMood,"messageId")
+   messageMoods: MessageMood[]
 }

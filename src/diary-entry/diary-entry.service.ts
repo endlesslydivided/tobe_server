@@ -31,7 +31,7 @@ export class DiaryEntryService {
     {   
         const result = await this.diaryEntryRepository.findAndCountAll(
         {
-            where:{[Op.and]: {createdAt:filters.createdAt,userId:currentUserId}},
+            where:{[Op.and]: {entryDate:filters.createdAt,userId:currentUserId}},
             limit:filters.limit,
             order:[...filters.order],
         }).catch((error) => {

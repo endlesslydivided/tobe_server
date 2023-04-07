@@ -22,6 +22,7 @@ import { UpdateUserDTO } from './dto/updateUser.dto';
 import UsersQueryParams from './requestFeatures/UsersQueryParams';
 import { User } from './user.model';
 import { UserCounts } from './userCounts.model';
+import { MentalCounts } from './mentalCount.model';
 
 const countIncludes =[
   {model: TweetCounts}
@@ -77,11 +78,29 @@ export class UserService {
         return await this.userRepository.findOne({ where: { email }});
     }
 
+    async getUsersTodayMental(userId: string,todayDate:string) 
+    {
+      const userMental = await this.userRepository.sequelize
+      .query(`select * from get_today_mental_stats(:userId, :todayDate)`,
+        {
+          replacements: {userId,todayDate},
+          type: QueryTypes.SELECT,
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        throw new InternalServerErrorException("User mental stats aren't found. Internal server error");
+      });
+      
+      return userMental;
+    }
+
     async getUserDataById(id:string)
     {
       const user = await  this.userRepository.findByPk(id, {include: 
         [
           {model:UserCounts},
+          {model:MentalCounts},
           {model:Media,as:"mainPhoto",required:false},
           {model:Media,as:"profilePhoto",required:false}
         ],
@@ -102,6 +121,7 @@ export class UserService {
         const user = await  this.userRepository.findByPk(id, {include: 
           [
             {model:UserCounts},
+            {model:MentalCounts},
             {model:Media,as:"mainPhoto",required:false},
             {model:Media,as:"profilePhoto",required:false},
             {model:Subscription,as:"isSubscribed",required:false, 
@@ -126,6 +146,7 @@ export class UserService {
         const user = await  this.userRepository.findByPk(id, {include: 
           [
             {model:UserCounts},
+            {model:MentalCounts},
             {model:Media,as:"mainPhoto"},
             {model:Media,as:"profilePhoto"}
           ],
@@ -170,6 +191,7 @@ export class UserService {
           include: 
             [
               {model:UserCounts},
+              {model:MentalCounts},
               {model:Media,as:"mainPhoto", required:!!filters.havePhoto},
               {model:Subscription,as:"isSubscribed",required:false, 
               on:
@@ -771,3 +793,4 @@ export class UserService {
       return result;
     }
 }
+

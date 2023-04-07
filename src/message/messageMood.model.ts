@@ -39,7 +39,6 @@ export class MessageMood extends Model<MessageMood,MessageMoodCreationAttribute>
   @Column({ type: DataType.BOOLEAN, allowNull: true })
   isNeuralEstimated: boolean;
 
-
   @ApiProperty({ example: "1", description: "The value of happiness,expressed by an entry" })
   @Default(0)
   @Column({ type: DataType.DECIMAL(3,2), allowNull: true })

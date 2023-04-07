@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {IsBoolean, IsNumber, IsOptional, IsString, Length, Max, Min } from "class-validator";
+import {IsBoolean, IsDateString, IsNumber, IsOptional, IsString, Length, Max, Min } from "class-validator";
 
 export class CreateDiaryEntryDto {
 
@@ -40,4 +40,7 @@ export class CreateDiaryEntryDto {
   @Max(10)
   @Min(0)
   neutral: number = 0;
+
+  @ApiProperty({ example: "09/04/2002", description: "Entry creation date" })
+  entryDate
 }

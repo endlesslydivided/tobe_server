@@ -302,5 +302,15 @@ export class UserController {
   ) {
     return this.userService.getUserFavoriteMessages(id, filters);
   }
+
+  @ApiOperation({ summary: "Get paged user's saved tweets" })
+  @ApiOkResponse({ type: 'MentalCounts' })
+  @Get('/:userId/today-mental')
+  getTodayMentalStatsByUser(
+    @Param('userId') userId: string,
+    @Query(new QueryParamsPipe()) filters: QueryParameters,
+  ) {
+    return this.userService.getUsersTodayMental(userId, filters.createdAt);
+  }
   
 }
