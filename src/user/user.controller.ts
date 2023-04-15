@@ -214,6 +214,16 @@ export class UserController {
     return this.userService.getFollowingRequests(id, filters);
   }
 
+  @ApiOperation({ summary: "Get paged bot's messages requests" })
+  @ApiOkResponse({ type: '{rows:Subscription[],count:number}' })
+  @Get('/:id/bot-messages')
+  getBotMessagesByUser(
+    @Param('id') id: string,
+    @Query(new QueryParamsPipe()) filters: QueryParameters,
+  ) {
+    return this.userService.getAllBotMessage(id, filters);
+  }
+
   @ApiOperation({
     summary: 'Get paged requests to subscribe a partircular user',
   })

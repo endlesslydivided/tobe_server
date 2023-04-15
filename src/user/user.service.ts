@@ -23,6 +23,7 @@ import UsersQueryParams from './requestFeatures/UsersQueryParams';
 import { User } from './user.model';
 import { UserCounts } from './userCounts.model';
 import { MentalCounts } from './mentalCount.model';
+import { BotMessage } from 'src/bot-message/diary-entry.model';
 
 const countIncludes =[
   {model: TweetCounts}
@@ -58,6 +59,7 @@ export class UserService {
 
     constructor(@InjectModel(User) private userRepository: typeof User,
                 @InjectModel(Subscription) private subsRepository: typeof Subscription,
+                @InjectModel(BotMessage) private botMessageRepository: typeof BotMessage,
                 @InjectModel(Tweet) private tweetRepository: typeof Tweet,
                 @InjectModel(Dialog) private dialogRepository: typeof Dialog,
                 @InjectModel(Media) private mediaRepository: typeof Media,
@@ -751,6 +753,12 @@ export class UserService {
     {
         return await this.favoriteMessageRepository.destroy({where:{userId,messageId}})
         .catch(e => console.log(e));
+    }
+
+    async getAllBotMessage(userId:string, filters: DBQueryParameters)
+    {
+        return await this.botMessageRepository.findAll({...filters,where:{userId}})
+
     }
 
     async getUserFavoriteMessages(id:string,filters : DBQueryParameters)

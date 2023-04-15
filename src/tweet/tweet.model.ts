@@ -91,7 +91,5 @@ export class Tweet extends Model<Tweet, TweetCreationAttribute> {
     @HasOne(() => TweetCounts,{as:'counts',foreignKey:'tweetId'})
     counts: TweetCounts
 
-
-
 }
 

@@ -16,7 +16,7 @@ export class BotMessageController {
     @ApiOperation({ summary: "Bot message creation" })
     @ApiOkResponse({ type: BotMessage })
     @Post()
-    createDialog(@Body() botMessageDto: CreateBotMessageDto) {
+    createBotMessage(@Body() botMessageDto: CreateBotMessageDto) {
         return this.botMessageService.createBotMessage(botMessageDto);
     }
 }
