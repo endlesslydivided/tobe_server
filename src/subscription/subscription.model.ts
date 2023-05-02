@@ -1,6 +1,6 @@
 import { BelongsTo, Column, CreatedAt, DataType, Default, ForeignKey, HasMany, HasOne, Model, Table, UpdatedAt } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { User } from "src/user/user.model";
+import { User } from "../user/user.model";
 
 interface SubscriptionCreationAttribute {
   friendId: number;

@@ -7,7 +7,7 @@ import { InjectModel } from "@nestjs/sequelize";
 import { UserService } from "../user/user.service";
 import { CreateUserDTO } from "../user/dto/createUser.dto";
 import { AuthRepository } from "./auth.repository";
-import { User } from "src/user/user.model";
+import { User } from "../user/user.model";
 import { Transaction } from "sequelize";
 import { RefreshTokensDTO } from "./dto/refreshTokens.dto";
 import { PrivacyInfoArgs } from "./decorators/privacyInfoArgs.decorator";

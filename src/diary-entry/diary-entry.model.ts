@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { BelongsTo, BelongsToMany, Column, DataType, Default, ForeignKey, Model, Table } from "sequelize-typescript";
-import { User } from "src/user/user.model";
+import { User } from "../user/user.model";
 
 
 interface DiaryEntryCreationAttribute {
@@ -60,9 +60,7 @@ export class DiaryEntry extends Model<DiaryEntry,DiaryEntryCreationAttribute> {
   @Column({ type: DataType.DATE, allowNull: true })
   entryDate: number;
 
-
   @BelongsTo(() => User,"userId")
   user: User
-
 
 }

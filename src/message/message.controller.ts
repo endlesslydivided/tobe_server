@@ -1,5 +1,5 @@
 import { Body, Controller, Post, UseGuards, UseInterceptors } from '@nestjs/common';
-import { AuthJWTGuard } from 'src/auth/guards/auth.guard';
+import { AuthJWTGuard } from '../auth/guards/auth.guard';
 import { MessageService } from './message.service';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MessageMood } from './messageMood.model';

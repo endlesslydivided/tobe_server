@@ -1,8 +1,8 @@
 import { BelongsToMany, Column, DataType, Default, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { UserDialog } from "./userDialog.model";
-import { User } from "src/user/user.model";
-import { Message } from "src/message/message.model";
+import { User } from "../user/user.model";
+import { Message } from "../message/message.model";
 
 interface DialogCreationAttribute {
   name: string;

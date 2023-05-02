@@ -3,7 +3,7 @@ import { BotMessageService } from './bot-message.service';
 import { CreateBotMessageDto } from './dto/createBotMessage.dto';
 import { BotMessage } from './diary-entry.model';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AuthJWTGuard } from 'src/auth/guards/auth.guard';
+import { AuthJWTGuard } from '../auth/guards/auth.guard';
 
 @ApiTags("Bot message")
 @Controller('bot-message')

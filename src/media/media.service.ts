@@ -37,7 +37,7 @@ export class MediaService {
         {
             return 'document';
         }
-    }
+      }
     
       createTweetMedia(files: any, tweetRecordId: string,transaction: Transaction) 
       {

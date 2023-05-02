@@ -2,15 +2,15 @@ import { forwardRef, Inject, Logger, UseFilters, UseGuards } from '@nestjs/commo
 import {SubscribeMessage,WebSocketGateway,OnGatewayInit,
   WebSocketServer,OnGatewayConnection,OnGatewayDisconnect, MessageBody} from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
-import { DialogService } from 'src/dialog/dialog.service';
-import { HttpExceptionFilter } from 'src/exceptions/httpException.filter';
-import { MessageService } from 'src/message/message.service';
-import QueryParameters from 'src/requestFeatures/query.params';
-import { UserService } from 'src/user/user.service';
+import { DialogService } from '../dialog/dialog.service';
+import { HttpExceptionFilter } from '../exceptions/httpException.filter';
+import { MessageService } from '../message/message.service';
+import QueryParameters from '../requestFeatures/query.params';
+import { UserService } from '../user/user.service';
 import { AuthJWTGuard } from '../auth/guards/auth.guard';
 import { CreateMessageDto } from '../message/dto/createMessage.dto';
 import * as brain from 'brain.js';
-import { Serializer } from 'src/neuralUtility/serializer';
+import { Serializer } from '../neuralUtility/serializer';
 
 import * as activationFunction from '../neuralUtility/serializedDataModel.json'
 

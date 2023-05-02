@@ -1,11 +1,11 @@
 import { BelongsTo, Column, DataType,HasOne,CreatedAt,UpdatedAt, ForeignKey, HasMany, Model, Table, Default, BelongsToMany } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { User } from "src/user/user.model";
-import { Media } from "src/media/media.model";
+import { User } from "../user/user.model";
+import { Media } from "../media/media.model";
 import { SavedTweet } from "./savedTweet.model";
 import { LikedTweet } from "./likedTweet.model";
 import { TweetCounts } from "./tweetcounts.model";
-import { Message } from "src/message/message.model";
+import { Message } from "../message/message.model";
 
 
 interface TweetCreationAttribute {

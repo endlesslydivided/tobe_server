@@ -32,7 +32,7 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Transaction } from 'sequelize';
 import { TransactionParam } from '../transactions/transactionParam.decorator';
 import QueryParameters from '../requestFeatures/query.params';
-import { CurrentUserArgs } from 'src/auth/decorators/currentUserArgs.decorator';
+import { CurrentUserArgs } from '../auth/decorators/currentUserArgs.decorator';
 import UsersQueryParams from './requestFeatures/UsersQueryParams';
 import { UserQueryParamsPipe } from './requestFeatures/UserQueryParamsPipe';
 import UsersParams from './requestFeatures/UsersParams';

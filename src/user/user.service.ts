@@ -1,29 +1,26 @@
 import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common';
 import { InternalServerErrorException, NotFoundException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
-import { filter } from 'rxjs';
-import sequelize from 'sequelize';
-import { Op, QueryTypes, Sequelize, Transaction } from 'sequelize';
-import { FavoriteMessage } from 'src/message/favoriteMessage.model';
-import { TweetCounts } from 'src/tweet/tweetcounts.model';
+import sequelize, { Op, QueryTypes, Sequelize, Transaction } from 'sequelize';
+import { BotMessage } from '../bot-message/diary-entry.model';
 import { Dialog } from '../dialog/dialog.model';
 import { UserDialog } from '../dialog/userDialog.model';
 import { Media } from '../media/media.model';
 import { MediaService } from '../media/media.service';
+import { FavoriteMessage } from '../message/favoriteMessage.model';
 import { Message } from '../message/message.model';
 import DBQueryParameters from '../requestFeatures/dbquery.params';
-import QueryParameters from '../requestFeatures/query.params';
 import { Subscription } from '../subscription/subscription.model';
 import { LikedTweet } from '../tweet/likedTweet.model';
 import { SavedTweet } from '../tweet/savedTweet.model';
 import { Tweet } from '../tweet/tweet.model';
+import { TweetCounts } from '../tweet/tweetcounts.model';
 import { CreateUserDTO } from './dto/createUser.dto';
 import { UpdateUserDTO } from './dto/updateUser.dto';
+import { MentalCounts } from './mentalCount.model';
 import UsersQueryParams from './requestFeatures/UsersQueryParams';
 import { User } from './user.model';
 import { UserCounts } from './userCounts.model';
-import { MentalCounts } from './mentalCount.model';
-import { BotMessage } from 'src/bot-message/diary-entry.model';
 
 const countIncludes =[
   {model: TweetCounts}
@@ -62,7 +59,6 @@ export class UserService {
                 @InjectModel(BotMessage) private botMessageRepository: typeof BotMessage,
                 @InjectModel(Tweet) private tweetRepository: typeof Tweet,
                 @InjectModel(Dialog) private dialogRepository: typeof Dialog,
-                @InjectModel(Media) private mediaRepository: typeof Media,
                 @InjectModel(LikedTweet) private likedTweetRepository: typeof LikedTweet,
                 @InjectModel(FavoriteMessage) private favoriteMessageRepository: typeof FavoriteMessage,
                 @InjectModel(Message) private messageRepository: typeof Message,

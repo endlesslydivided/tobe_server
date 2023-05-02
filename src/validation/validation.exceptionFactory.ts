@@ -1,5 +1,5 @@
 import { ValidationError } from "@nestjs/common";
-import { ValidationException } from "src/exceptions/types/validation.exception";
+import { ValidationException } from "../exceptions/types/validation.exception";
 
 const  ValidationExceptionFactory = (errors: ValidationError[]) =>
     {

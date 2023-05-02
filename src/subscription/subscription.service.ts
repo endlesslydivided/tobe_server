@@ -3,10 +3,10 @@ import { InternalServerErrorException, NotFoundException } from '@nestjs/common/
 import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
 import { Transaction } from 'sequelize';
-import { Media } from 'src/media/media.model';
-import DBQueryParameters from 'src/requestFeatures/dbquery.params';
-import { User } from 'src/user/user.model';
-import { UserCounts } from 'src/user/userCounts.model';
+import { Media } from '../media/media.model';
+import DBQueryParameters from '../requestFeatures/dbquery.params';
+import { User } from '../user/user.model';
+import { UserCounts } from '../user/userCounts.model';
 import { CreateSubsriptionDTO } from './dto/createSubscription.dto';
 import { UpdateSubscriptionDTO } from './dto/updateSubscription.dto';
 import { Subscription } from './subscription.model';

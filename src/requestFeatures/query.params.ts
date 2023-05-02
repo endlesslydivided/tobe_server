@@ -17,6 +17,7 @@ export default class QueryParameters
     @IsOptional()
     public page:number;
 
+    
     @IsString({message:"Order by value must be a string"})
     @IsOptional()
     public orderBy:string;

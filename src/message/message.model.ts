@@ -1,9 +1,9 @@
 import { BelongsTo, Column, DataType, Default, ForeignKey, HasMany, HasOne, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { Dialog } from "src/dialog/dialog.model";
-import { User } from "src/user/user.model";
-import { Media } from "src/media/media.model";
-import { Tweet } from "src/tweet/tweet.model";
+import { Dialog } from "../dialog/dialog.model";
+import { User } from "../user/user.model";
+import { Media } from "../media/media.model";
+import { Tweet } from "../tweet/tweet.model";
 import { FavoriteMessage } from "./favoriteMessage.model";
 import { MessageMood } from "./messageMood.model";
 

@@ -10,7 +10,7 @@ import { UpdateDialogDto } from './dto/updateDialog.dto';
 import { AuthJWTGuard } from '../auth/guards/auth.guard';
 import { QueryParamsPipe } from '../requestFeatures/queryParams.pipe';
 import QueryParameters from '../requestFeatures/query.params';
-import { CurrentUserArgs } from 'src/auth/decorators/currentUserArgs.decorator';
+import { CurrentUserArgs } from '../auth/decorators/currentUserArgs.decorator';
 
 @ApiTags("Dialogs")
 @Controller("dialogs")

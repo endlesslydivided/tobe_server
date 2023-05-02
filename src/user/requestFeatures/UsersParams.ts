@@ -1,4 +1,4 @@
-import DBQueryParameters from "src/requestFeatures/dbquery.params";
+import DBQueryParameters from "../../requestFeatures/dbquery.params";
 
 export default class UsersParams extends DBQueryParameters
 {

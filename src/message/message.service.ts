@@ -2,11 +2,11 @@ import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger } 
 import { InjectConnection, InjectModel } from '@nestjs/sequelize';
 import sequelize, { Op, Sequelize } from 'sequelize';
 import { Transaction } from 'sequelize';
-import { Media } from 'src/media/media.model';
-import { MediaService } from 'src/media/media.service';
-import { Tweet } from 'src/tweet/tweet.model';
-import { TweetCounts } from 'src/tweet/tweetcounts.model';
-import { User } from 'src/user/user.model';
+import { Media } from '../media/media.model';
+import { MediaService } from '../media/media.service';
+import { Tweet } from '../tweet/tweet.model';
+import { TweetCounts } from '../tweet/tweetcounts.model';
+import { User } from '../user/user.model';
 import { CreateMessageDto } from './dto/createMessage.dto';
 import { UpdateMessageDto } from './dto/updateMessage.dto';
 import { Message } from './message.model';

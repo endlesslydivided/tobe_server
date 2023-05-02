@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AuthJWTGuard } from 'src/auth/guards/auth.guard';
+import { AuthJWTGuard } from '../auth/guards/auth.guard';
 import { DiaryEntryService } from './diary-entry.service';
 import { DiaryEntry } from './diary-entry.model';
 import { CreateDiaryEntryDto } from './dto/createDiaryEntry.dto';
-import { QueryParamsPipe } from 'src/requestFeatures/queryParams.pipe';
-import { CurrentUserArgs } from 'src/auth/decorators/currentUserArgs.decorator';
-import QueryParameters from 'src/requestFeatures/query.params';
+import { QueryParamsPipe } from '../requestFeatures/queryParams.pipe';
+import { CurrentUserArgs } from '../auth/decorators/currentUserArgs.decorator';
+import QueryParameters from '../requestFeatures/query.params';
 
 @ApiTags("Diary entry")
 @Controller('diary-entry')

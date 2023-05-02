@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { MediaModule } from 'src/media/media.module';
+import { MediaModule } from '../media/media.module';
 import { FavoriteMessage } from './favoriteMessage.model';
 import { Message } from './message.model';
 import { MessageService } from './message.service';

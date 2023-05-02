@@ -5,8 +5,8 @@ import { JwtModule } from "@nestjs/jwt";
 import { AccessTokenStrategy } from "./strategy/accessToken.strategy";
 import { RefreshTokenStrategy } from "./strategy/refreshToken.strategy";
 import { AuthRepository } from "./auth.repository";
-import { redisModule } from "src/module.config";
-import { UserModule } from "src/user/user.module";
+import { redisModule } from "../module.config";
+import { UserModule } from "../user/user.module";
 
 @Global()
 @Module({

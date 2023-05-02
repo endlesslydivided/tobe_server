@@ -1,12 +1,9 @@
-import { Body, Controller, Delete, forwardRef, Get, HttpStatus, Inject, Param, Post, Put, Query, Req, Res, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, forwardRef, Get, HttpStatus, Inject, Param, Post, Put, Query, Res, UseGuards } from "@nestjs/common";
 import { ApiBody, ApiCookieAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
-import { Transaction } from "sequelize";
-import { TransactionInterceptor } from "src/transactions/transaction.interceptor";
-import { TransactionParam } from "src/transactions/transactionParam.decorator";
-import { CreateUserDTO } from "src/user/dto/createUser.dto";
-import { User } from "src/user/user.model";
-import { UserService } from "src/user/user.service";
+import { CreateUserDTO } from "../user/dto/createUser.dto";
+import { User } from "../user/user.model";
+import { UserService } from "../user/user.service";
 import { AuthService } from "./auth.service";
 import { CurrentUserArgs } from "./decorators/currentUserArgs.decorator";
 import { PrivacyInfoArgs } from "./decorators/privacyInfoArgs.decorator";

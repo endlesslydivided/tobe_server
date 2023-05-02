@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
-import { CreateUserDTO } from 'src/user/dto/createUser.dto';
+import { CreateUserDTO } from '../user/dto/createUser.dto';
 
 @Injectable()
 export class MailService {

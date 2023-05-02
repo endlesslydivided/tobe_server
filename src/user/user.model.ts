@@ -1,17 +1,17 @@
 import { ApiProperty } from "@nestjs/swagger";
 import {BelongsTo,BelongsToMany,Column,CreatedAt,DataType,Default,ForeignKey,HasMany,HasOne,Model,Table, UpdatedAt} from "sequelize-typescript";
-import { Dialog } from "src/dialog/dialog.model";
-import { UserDialog } from "src/dialog/userDialog.model";
-import { Media } from "src/media/media.model";
-import { FavoriteMessage } from "src/message/favoriteMessage.model";
-import { Message } from "src/message/message.model";
-import { Subscription } from "src/subscription/subscription.model";
-import { LikedTweet } from "src/tweet/likedTweet.model";
-import { SavedTweet } from "src/tweet/savedTweet.model";
-import { Tweet } from "src/tweet/tweet.model";
+import { Dialog } from "../dialog/dialog.model";
+import { UserDialog } from "../dialog/userDialog.model";
+import { Media } from "../media/media.model";
+import { FavoriteMessage } from "../message/favoriteMessage.model";
+import { Message } from "../message/message.model";
+import { Subscription } from "../subscription/subscription.model";
+import { LikedTweet } from "../tweet/likedTweet.model";
+import { SavedTweet } from "../tweet/savedTweet.model";
+import { Tweet } from "../tweet/tweet.model";
 import { UserCounts } from "./userCounts.model";
-import { MessageMood } from "src/message/messageMood.model";
-import { DiaryEntry } from "src/diary-entry/diary-entry.model";
+import { MessageMood } from "../message/messageMood.model";
+import { DiaryEntry } from "../diary-entry/diary-entry.model";
 import { MentalCounts } from "./mentalCount.model";
 
   
@@ -84,12 +84,12 @@ export class User extends Model<User,UserCreationAttribute>
     @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "ID of main photo" })
     @ForeignKey(() => Media)
     @Column({ type: DataType.UUID })
-    mainPhotoId: number;
+    mainPhotoId: string;
 
     @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "ID of profile photo" })
     @ForeignKey(() => Media)
     @Column({ type: DataType.UUID })
-    profilePhotoId: number;
+    profilePhotoId: string;
 
     //User's tweets
     @HasMany(() => Tweet,{as:'tweets',foreignKey:'authorId'})

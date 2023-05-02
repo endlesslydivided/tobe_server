@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { BelongsTo, BelongsToMany, Column, DataType, Default, ForeignKey, Model, Table } from "sequelize-typescript";
-import { User } from "src/user/user.model";
+import { User } from "../user/user.model";
 import { Dialog } from "./dialog.model";
 
 @Table({ tableName: "userDialog", timestamps: true, createdAt: "createdAt", updatedAt: false })

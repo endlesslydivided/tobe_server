@@ -1,6 +1,6 @@
 import { Transform } from "class-transformer";
 import { IsOptional, IsString } from "class-validator";
-import QueryParameters from "src/requestFeatures/query.params";
+import QueryParameters from "../../requestFeatures/query.params";
 
 export default class UsersQueryParams extends QueryParameters
 {

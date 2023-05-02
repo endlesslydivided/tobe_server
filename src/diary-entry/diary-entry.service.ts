@@ -4,7 +4,7 @@ import { InjectConnection, InjectModel } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { Op, Transaction } from 'sequelize';
 import { CreateDiaryEntryDto } from './dto/createDiaryEntry.dto';
-import DBQueryParameters from 'src/requestFeatures/dbquery.params';
+import DBQueryParameters from '../requestFeatures/dbquery.params';
 @Injectable()
 export class DiaryEntryService {
 

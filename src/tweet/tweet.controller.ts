@@ -18,12 +18,12 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Transaction } from 'sequelize';
-import { CurrentUserArgs } from 'src/auth/decorators/currentUserArgs.decorator';
-import { AuthJWTGuard } from 'src/auth/guards/auth.guard';
-import QueryParameters from 'src/requestFeatures/query.params';
-import { QueryParamsPipe } from 'src/requestFeatures/queryParams.pipe';
-import { TransactionInterceptor } from 'src/transactions/transaction.interceptor';
-import { TransactionParam } from 'src/transactions/transactionParam.decorator';
+import { CurrentUserArgs } from '../auth/decorators/currentUserArgs.decorator';
+import { AuthJWTGuard } from '../auth/guards/auth.guard';
+import QueryParameters from '../requestFeatures/query.params';
+import { QueryParamsPipe } from '../requestFeatures/queryParams.pipe';
+import { TransactionInterceptor } from '../transactions/transaction.interceptor';
+import { TransactionParam } from '../transactions/transactionParam.decorator';
 import { CreateTweetDTO } from './dto/createTweet.dto';
 import { Tweet } from './tweet.model';
 import { TweetService } from './tweet.service';

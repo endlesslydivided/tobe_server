@@ -1,6 +1,5 @@
-import { BadRequestException, Inject, Injectable, InternalServerErrorException, Logger } from "@nestjs/common";
-import { Redis } from "ioredis";
-import { IORedisKey } from "src/redis";
+import { Inject, Injectable, InternalServerErrorException, Logger } from "@nestjs/common";
+import { IORedisKey } from "../redis";
 import { CreateSession, CreateTemporaryUser, Session, TemporaryUser } from "./dto/auth-types";
 
 

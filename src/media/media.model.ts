@@ -1,8 +1,8 @@
 import { AfterFind, BelongsTo, Column, CreatedAt, DataType, Default, ForeignKey, HasOne, Model, Table, UpdatedAt } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-import { Tweet } from "src/tweet/tweet.model";
-import { User } from "src/user/user.model";
-import { Message } from "src/message/message.model";
+import { Tweet } from "../tweet/tweet.model";
+import { User } from "../user/user.model";
+import { Message } from "../message/message.model";
 
 interface MediaCreationAttribute {
   path: string;
