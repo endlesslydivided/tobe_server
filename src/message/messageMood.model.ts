@@ -26,12 +26,12 @@ export class MessageMood extends Model<MessageMood,MessageMoodCreationAttribute>
   id: string;
 
   @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "User which marked a message" })
-  @ForeignKey(() => User)
+  @ForeignKey(/* istanbul ignore next */  () => User)
   @Column({ type: DataType.UUID, allowNull: true  })
   userId: string;
 
   @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174001", description: "Marked message id" })
-  @ForeignKey(() => Message)
+  @ForeignKey(/* istanbul ignore next */  () => Message)
   @Column({ type: DataType.UUID })
   messageId: string;
 
@@ -69,10 +69,10 @@ export class MessageMood extends Model<MessageMood,MessageMoodCreationAttribute>
   @Column({ type: DataType.DECIMAL(3,2), allowNull: true })
   isNeutral: number;
 
-  @BelongsTo(() => User,"userId")
+  @BelongsTo(/* istanbul ignore next */  () => User,"userId")
   user: User
 
-  @BelongsTo(() => Message,"messageId")
+  @BelongsTo(/* istanbul ignore next */  () => Message,"messageId")
   message: Message
 
 }

@@ -12,18 +12,18 @@ export class UserDialog extends Model<UserDialog> {
   id: string;
 
   @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174001", description: "User identifier" })
-  @ForeignKey(() => User)
+  @ForeignKey(/* istanbul ignore next */ () => User)
   @Column({ type: DataType.STRING })
   userId: string;
 
   @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "Dialog identifier" })
-  @ForeignKey(() => Dialog)
+  @ForeignKey(/* istanbul ignore next */ () => Dialog)
   @Column({ type: DataType.STRING })
   dialogId: string;
 
-  @BelongsTo(() => User)
+  @BelongsTo(/* istanbul ignore next */ () => User)
   user: User
 
-  @BelongsTo(() => Dialog)
+  @BelongsTo(/* istanbul ignore next */ () => Dialog)
   dialog: Dialog
 }

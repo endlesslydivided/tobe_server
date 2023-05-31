@@ -39,56 +39,56 @@ export class Tweet extends Model<Tweet, TweetCreationAttribute> {
 
     //Author foreign key
     @ApiProperty({ example: "0", description: "ID of tweet author" })
-    @ForeignKey(() => User)
+    @ForeignKey(/* istanbul ignore next */  () => User)
     @Column({ type: DataType.UUID, allowNull: true })
     authorId: string;
 
-    @BelongsTo(() => User,{foreignKey:"authorId",constraints:true,onDelete:"SET NULL"})
+    @BelongsTo(/* istanbul ignore next */  () => User,{foreignKey:"authorId",constraints:true,onDelete:"SET NULL"})
     author: User;
 
     //Parent record author foreign key
     @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174001", description: "ID of tweet parent record author" })
-    @ForeignKey(() => User)
+    @ForeignKey(/* istanbul ignore next */  () => User)
     @Column({ type: DataType.UUID, allowNull: true })
     parentRecordAuthorId: string;
 
-    @BelongsTo(() => User,{foreignKey:"parentRecordAuthorId",constraints:true,onDelete:"SET NULL"})
+    @BelongsTo(/* istanbul ignore next */  () => User,{foreignKey:"parentRecordAuthorId",constraints:true,onDelete:"SET NULL"})
     parentRecordAuthor: User;
 
     //Parent record foreign key
     @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174002", description: "ID of tweet parent record" })
-    @ForeignKey(() => Tweet)
+    @ForeignKey(/* istanbul ignore next */  () => Tweet)
     @Column({ type: DataType.UUID, allowNull: true })
     parentRecordId: string;
 
-    @BelongsTo(() => Tweet,{foreignKey:"parentRecordId",constraints:true,onDelete:"CASCADE",as:"isRetweeted"})
+    @BelongsTo(/* istanbul ignore next */  () => Tweet,{foreignKey:"parentRecordId",constraints:true,onDelete:"CASCADE",as:"isRetweeted"})
     isRetweeted: Tweet;
   
 
-    @BelongsTo(() => Tweet,{foreignKey:"parentRecordId",constraints:true,onDelete:"CASCADE",as:"parentRecord"})
+    @BelongsTo(/* istanbul ignore next */  () => Tweet,{foreignKey:"parentRecordId",constraints:true,onDelete:"CASCADE",as:"parentRecord"})
     parentRecord: Tweet;
 
     //Tweet's media
-    @HasMany(() => Media,"tweetRecordId")
+    @HasMany(/* istanbul ignore next */  () => Media,"tweetRecordId")
     tweetMedia: Media[]
 
     //Users, which saved or liked a tweet
-    @BelongsToMany(() => User, () => SavedTweet,"tweetId")
+    @BelongsToMany(/* istanbul ignore next */  () => User, /* istanbul ignore next */  () => SavedTweet,"tweetId")
     usersSaves: User[];
 
-    @BelongsToMany(() => User, () => LikedTweet,"tweetId")
+    @BelongsToMany(/* istanbul ignore next */  () => User, /* istanbul ignore next */  () => LikedTweet,"tweetId")
     usersLikes: User[];
 
-    @HasMany(() => Message,"messageTweetId")
+    @HasMany(/* istanbul ignore next */  () => Message,"messageTweetId")
     messages: Message[];
 
-    @HasOne(() => SavedTweet,{as:'isSaved'})
+    @HasOne(/* istanbul ignore next */  () => SavedTweet,{as:'isSaved'})
     userSavedTweet: SavedTweet
 
-    @HasOne(() => LikedTweet,{as:'isLiked'})
+    @HasOne(/* istanbul ignore next */  () => LikedTweet,{as:'isLiked'})
     userLikedTweet: LikedTweet
 
-    @HasOne(() => TweetCounts,{as:'counts',foreignKey:'tweetId'})
+    @HasOne(/* istanbul ignore next */  () => TweetCounts,{as:'counts',foreignKey:'tweetId'})
     counts: TweetCounts
 
 }

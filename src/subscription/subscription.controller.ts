@@ -5,7 +5,7 @@ import { AuthJWTGuard } from '../auth/guards/auth.guard';
 import { TransactionInterceptor } from '../transactions/transaction.interceptor';
 import { TransactionParam } from '../transactions/transactionParam.decorator';
 import { CreateSubsriptionDTO } from './dto/createSubscription.dto';
-import { DeleteSubsriptionDTO } from './dto/deleteSubscription.dto copy';
+import { DeleteSubsriptionDTO } from './dto/deleteSubscription.dto';
 import { UpdateSubscriptionDTO } from './dto/updateSubscription.dto';
 import { Subscription } from './subscription.model';
 import { SubscriptionService } from './subscription.service';

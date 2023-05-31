@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BotMessage } from '../bot-message/diary-entry.model';
 import { Dialog } from '../dialog/dialog.model';
 import { MediaService } from '../media/media.service';
 import { FavoriteMessage } from '../message/favoriteMessage.model';
@@ -157,10 +156,6 @@ describe('UserService', () => {
         {
           provide: getModelToken(Subscription),
           useValue:subsRepositoryStub
-        },
-        {
-          provide: getModelToken(BotMessage),
-          useValue:botMessageRepositoryStub
         },
         {
           provide: getModelToken(Tweet),

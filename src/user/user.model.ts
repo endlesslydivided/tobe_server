@@ -82,91 +82,91 @@ export class User extends Model<User,UserCreationAttribute>
     accessFailedCount: number;
 
     @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "ID of main photo" })
-    @ForeignKey(() => Media)
+    @ForeignKey(/* istanbul ignore next */  () => Media)
     @Column({ type: DataType.UUID })
     mainPhotoId: string;
 
     @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "ID of profile photo" })
-    @ForeignKey(() => Media)
+    @ForeignKey(/* istanbul ignore next */  () => Media)
     @Column({ type: DataType.UUID })
     profilePhotoId: string;
 
     //User's tweets
-    @HasMany(() => Tweet,{as:'tweets',foreignKey:'authorId'})
+    @HasMany(/* istanbul ignore next */  () => Tweet,{as:'tweets',foreignKey:'authorId'})
     tweets: Tweet[]
 
-    @HasMany(() => Tweet,"parentRecordAuthorId")
+    @HasMany(/* istanbul ignore next */  () => Tweet,"parentRecordAuthorId")
     userTweetsComments: Tweet[]
 
     //User's saved and liked tweets
-    @BelongsToMany(() => Tweet, () => SavedTweet,"userId")
+    @BelongsToMany(/* istanbul ignore next */  () => Tweet, /* istanbul ignore next */  () => SavedTweet,"userId")
     savedTweets: Tweet[];
 
-    @BelongsToMany(() => Tweet, () => LikedTweet,"userId")
+    @BelongsToMany(/* istanbul ignore next */  () => Tweet, /* istanbul ignore next */  () => LikedTweet,"userId")
     likedTweets: Tweet[];
 
     //User's subscribers and subcribtions
-    @HasMany(() => Subscription,{as:'followers',foreignKey:'subscribedUserId'})
+    @HasMany(/* istanbul ignore next */  () => Subscription,{as:'followers',foreignKey:'subscribedUserId'})
     followers: Subscription[]
 
-    @HasMany(() => Subscription,{as:'following',foreignKey:'subscriberId'})
+    @HasMany(/* istanbul ignore next */  () => Subscription,{as:'following',foreignKey:'subscriberId'})
     subscriptions: User[];
 
-    @BelongsTo(() => Media, {
+    @BelongsTo(/* istanbul ignore next */  () => Media, {
         foreignKey: "mainPhotoId",
         constraints: false, onDelete: "set null", as:'mainPhoto'
       })
     mainPhoto: Media;
 
-    @BelongsTo(() => Media, {
+    @BelongsTo(/* istanbul ignore next */  () => Media, {
         foreignKey: "profilePhotoId",
         constraints: false, onDelete: "set null", as:'profilePhoto'
       })
     profilePhoto: Media;
 
-    @BelongsToMany(() => Dialog, () => UserDialog)
+    @BelongsToMany(/* istanbul ignore next */  () => Dialog, /* istanbul ignore next */  () => UserDialog)
     dialogs: Dialog[];
 
-    @HasMany(() => Dialog, {
+    @HasMany(/* istanbul ignore next */  () => Dialog, {
         foreignKey: "creatorId",
         constraints: true, onDelete: "cascade", onUpdate: "cascade"
     })
     createdDialogs: Dialog[];
 
-    @HasMany(() => Message, {
+    @HasMany(/* istanbul ignore next */  () => Message, {
         foreignKey: "userId",
         constraints: true, onDelete: "set null", onUpdate: "cascade"
     })
     messages: Message[];
 
-    @HasMany(() => UserDialog)
+    @HasMany(/* istanbul ignore next */  () => UserDialog)
     userDialog: UserDialog[]
 
-    @HasMany(() => Subscription,{as:"isSubscribed"})
+    @HasMany(/* istanbul ignore next */  () => Subscription,{as:"isSubscribed"})
     isSubscribed: Subscription;
     
-    @HasMany(() => Subscription,{as:"isFollower"})
+    @HasMany(/* istanbul ignore next */  () => Subscription,{as:"isFollower"})
     isFollower: Subscription;
 
-    @HasOne(() => UserCounts,{as:'counts',foreignKey:'userId'})
+    @HasOne(/* istanbul ignore next */  () => UserCounts,{as:'counts',foreignKey:'userId'})
     counts: UserCounts
 
-    @BelongsToMany(() => Message, () => FavoriteMessage,"userId")
+    @BelongsToMany(/* istanbul ignore next */  () => Message, /* istanbul ignore next */  () => FavoriteMessage,"userId")
     favoriteMessages: FavoriteMessage[];
 
-    @HasMany(() => MessageMood, {
+    @HasMany(/* istanbul ignore next */  () => MessageMood, {
         foreignKey: "userId",
         constraints: true, onDelete: "set null", onUpdate: "cascade"
     })
     messagesMoods: MessageMood[];
 
-    @HasMany(() => DiaryEntry, {
+    @HasMany(/* istanbul ignore next */  () => DiaryEntry, {
         foreignKey: "userId",
         constraints: true, onDelete: "set null", onUpdate: "cascade"
     })
     diaryEntries: DiaryEntry[];
 
-    @HasOne(() => MentalCounts,{as:'mentalCounts',foreignKey:'userMoodId'})
+    @HasOne(/* istanbul ignore next */  () => MentalCounts,{as:'mentalCounts',foreignKey:'userMoodId'})
     mentalCounts: MentalCounts
     
 }

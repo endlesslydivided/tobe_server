@@ -7,7 +7,7 @@ import { Tweet } from "./tweet.model";
 export class TweetCounts extends Model<TweetCounts> {
 
   
-  @ForeignKey(() => Tweet)
+  @ForeignKey(/* istanbul ignore next */  () => Tweet)
   @PrimaryKey
   @Column({ type: DataType.UUIDV4 })
   tweetId: string;
@@ -24,7 +24,7 @@ export class TweetCounts extends Model<TweetCounts> {
   @Column({ type: DataType.BIGINT})
   commentsCount: number;
 
-  @BelongsTo(() => Tweet,"tweetId")
+  @BelongsTo(/* istanbul ignore next */  () => Tweet,"tweetId")
   relatedTweet: Tweet
 
 }

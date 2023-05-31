@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { BotMessage } from '../bot-message/diary-entry.model';
 import { Dialog } from '../dialog/dialog.model';
 import { DiaryEntry } from '../diary-entry/diary-entry.model';
 import { Media } from '../media/media.model';
@@ -26,7 +25,7 @@ import { UserCounts } from './userCounts.model';
     MediaModule,
     SequelizeModule.forFeature([
       Tweet, User, SavedTweet,LikedTweet,Subscription,Media, Message,Dialog,UserCounts,FavoriteMessage,
-      DiaryEntry,BotMessage,MessageMood, MentalCounts]),
+      DiaryEntry,MessageMood, MentalCounts]),
   ],
   exports:[
     UserService

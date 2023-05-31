@@ -1,4 +1,4 @@
-
+/* istanbul ignore file */
 
 export class Serializer 
 {

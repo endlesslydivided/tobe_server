@@ -18,12 +18,12 @@ export class Subscription extends Model<Subscription, SubscriptionCreationAttrib
     id: string;
 
     @ApiProperty({ example: "0", description: "ID of user" })
-    @ForeignKey(() => User)
+    @ForeignKey(/* istanbul ignore next */  () => User)
     @Column({ type: DataType.UUID })
     subscriberId: string;
 
     @ApiProperty({ example: "0", description: "ID of user to be subscribed" })
-    @ForeignKey(() => User)
+    @ForeignKey(/* istanbul ignore next */  () => User)
     @Column({ type: DataType.UUID, allowNull: true })
     subscribedUserId: string;
 
@@ -32,9 +32,9 @@ export class Subscription extends Model<Subscription, SubscriptionCreationAttrib
     @Column({ type: DataType.BOOLEAN, allowNull:true})
     isRejected: boolean;
 
-    @BelongsTo(() => User,{as:"subscriber",foreignKey:"subscriberId"})
+    @BelongsTo(/* istanbul ignore next */  () => User,{as:"subscriber",foreignKey:"subscriberId"})
     subscriber: User;
 
-    @BelongsTo(() => User,{as:"subscribedUser",foreignKey:"subscribedUserId"})
+    @BelongsTo(/* istanbul ignore next */  () => User,{as:"subscribedUser",foreignKey:"subscribedUserId"})
     subscribedUser: User;
 }

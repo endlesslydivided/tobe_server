@@ -31,7 +31,6 @@ import { UserCounts } from './user/userCounts.model';
 import { DiaryEntryModule } from './diary-entry/diary-entry.module';
 import { DiaryEntry } from './diary-entry/diary-entry.model';
 import { MessageMood } from './message/messageMood.model';
-import { BotMessageModule } from './bot-message/bot-message.module';
 import { MentalCounts } from './user/mentalCount.model';
 
 
@@ -83,7 +82,6 @@ import { MentalCounts } from './user/mentalCount.model';
     MessageModule,
     ChatModule,
     DiaryEntryModule,
-    BotMessageModule,
     
     ]
 })

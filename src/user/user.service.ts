@@ -2,7 +2,6 @@ import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common';
 import { InternalServerErrorException, NotFoundException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
 import sequelize, { Op, QueryTypes, Sequelize, Transaction } from 'sequelize';
-import { BotMessage } from '../bot-message/diary-entry.model';
 import { Dialog } from '../dialog/dialog.model';
 import { UserDialog } from '../dialog/userDialog.model';
 import { Media } from '../media/media.model';
@@ -18,7 +17,7 @@ import { TweetCounts } from '../tweet/tweetcounts.model';
 import { CreateUserDTO } from './dto/createUser.dto';
 import { UpdateUserDTO } from './dto/updateUser.dto';
 import { MentalCounts } from './mentalCount.model';
-import UsersQueryParams from './requestFeatures/UsersQueryParams';
+import UsersQueryParams from './requestFeatures/usersQuery.params';
 import { User } from './user.model';
 import { UserCounts } from './userCounts.model';
 
@@ -56,7 +55,6 @@ export class UserService {
 
     constructor(@InjectModel(User) private userRepository: typeof User,
                 @InjectModel(Subscription) private subsRepository: typeof Subscription,
-                @InjectModel(BotMessage) private botMessageRepository: typeof BotMessage,
                 @InjectModel(Tweet) private tweetRepository: typeof Tweet,
                 @InjectModel(Dialog) private dialogRepository: typeof Dialog,
                 @InjectModel(LikedTweet) private likedTweetRepository: typeof LikedTweet,
@@ -751,11 +749,7 @@ export class UserService {
         .catch(e => console.log(e));
     }
 
-    async getAllBotMessage(userId:string, filters: DBQueryParameters)
-    {
-        return await this.botMessageRepository.findAll({...filters,where:{userId}})
 
-    }
 
     async getUserFavoriteMessages(id:string,filters : DBQueryParameters)
     {

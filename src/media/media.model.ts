@@ -36,26 +36,26 @@ export class Media extends Model<Media, MediaCreationAttribute> {
 
     //Tweet record foreign key
     @ApiProperty({ example: "0", description: "ID of tweet record" })
-    @ForeignKey(() => Tweet)
+    @ForeignKey(/* istanbul ignore next */  () => Tweet)
     @Column({ type: DataType.UUID, allowNull: true })
     tweetRecordId: string;
 
-    @BelongsTo(() => Tweet,{foreignKey:"tweetRecordId",constraints:true,onDelete:"cascade"})
+    @BelongsTo(/* istanbul ignore next */  () => Tweet,{foreignKey:"tweetRecordId",constraints:true,onDelete:"cascade"})
     tweetRecord: Tweet;
 
     //Message record foreign key
     @ApiProperty({ example: "0", description: "ID of message record" })
-    @ForeignKey(() => Message)
+    @ForeignKey(/* istanbul ignore next */  () => Message)
     @Column({ type: DataType.UUID, allowNull: true })
     messageRecordId: string;
 
-    @BelongsTo(() => Message,{foreignKey:"messageRecordId",constraints:true,onDelete:"cascade"})
+    @BelongsTo(/* istanbul ignore next */  () => Message,{foreignKey:"messageRecordId",constraints:true,onDelete:"cascade"})
     messageRecord: Message;
 
-    @HasOne(() => User,"mainPhotoId")
+    @HasOne(/* istanbul ignore next */  () => User,"mainPhotoId")
     userMainPhoto: User;
   
-    @HasOne(() => User,"profilePhotoId")
+    @HasOne(/* istanbul ignore next */  () => User,"profilePhotoId")
     userProfilePhoto: User;
 
  

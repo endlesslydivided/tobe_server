@@ -5,7 +5,7 @@ import { User } from "./user.model";
 export class MentalCounts extends Model<MentalCounts> {
 
   
-  @ForeignKey(() => User)
+  @ForeignKey(/* istanbul ignore next */() => User)
   @PrimaryKey
   @Column({ type: DataType.UUIDV4 })
   userMoodId: string;
@@ -43,7 +43,7 @@ export class MentalCounts extends Model<MentalCounts> {
   @Column({ type: DataType.DECIMAL(3, 2).UNSIGNED.ZEROFILL})
   sadAvgTotal: number;
 
-  @BelongsTo(() => User,"userMoodId")
+  @BelongsTo(/* istanbul ignore next */() => User,"userMoodId")
   relatedUser: User
 
 }

@@ -13,7 +13,7 @@ import QueryParameters from '../requestFeatures/query.params';
 @UseGuards(AuthJWTGuard)
 export class DiaryEntryController {
 
-     constructor(private diaryEntryService: DiaryEntryService ) 
+    constructor(private diaryEntryService: DiaryEntryService ) 
     {}
 
     @ApiOperation({ summary: "Diary entry creation" })

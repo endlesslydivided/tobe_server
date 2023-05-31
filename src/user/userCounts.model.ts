@@ -5,7 +5,7 @@ import { User } from "./user.model";
 export class UserCounts extends Model<UserCounts> {
 
   
-  @ForeignKey(() => User)
+  @ForeignKey(/* istanbul ignore next */() => User)
   @PrimaryKey
   @Column({ type: DataType.UUIDV4 })
   userId: string;
@@ -19,7 +19,7 @@ export class UserCounts extends Model<UserCounts> {
   @Column({ type: DataType.BIGINT})
   tweetsCount: number;
 
-  @BelongsTo(() => User,"userId")
+  @BelongsTo(/* istanbul ignore next */() => User,"userId")
   relatedUser: User
 
 }

@@ -11,31 +11,29 @@ import {
   Delete,
   Post,
   UploadedFile,
-  UploadedFiles,
-  UseInterceptors,
+  UseInterceptors
 } from '@nestjs/common/decorators';
+import { FileInterceptor } from '@nestjs/platform-express';
 import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import { Transaction } from 'sequelize';
+import { CurrentUserArgs } from '../auth/decorators/currentUserArgs.decorator';
 import { AuthJWTGuard } from '../auth/guards/auth.guard';
+import QueryParameters from '../requestFeatures/query.params';
 import { QueryParamsPipe } from '../requestFeatures/queryParams.pipe';
+import { TransactionInterceptor } from '../transactions/transaction.interceptor';
+import { TransactionParam } from '../transactions/transactionParam.decorator';
 import { LikedTweet } from '../tweet/likedTweet.model';
 import { SavedTweet } from '../tweet/savedTweet.model';
 import { UpdateUserDTO } from './dto/updateUser.dto';
+import { UserQueryParamsPipe } from './requestFeatures/userQueryParams.pipe';
+import UsersQueryParams from './requestFeatures/usersQuery.params';
 import { User } from './user.model';
 import { UserService } from './user.service';
-import { TransactionInterceptor } from '../transactions/transaction.interceptor';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { Transaction } from 'sequelize';
-import { TransactionParam } from '../transactions/transactionParam.decorator';
-import QueryParameters from '../requestFeatures/query.params';
-import { CurrentUserArgs } from '../auth/decorators/currentUserArgs.decorator';
-import UsersQueryParams from './requestFeatures/UsersQueryParams';
-import { UserQueryParamsPipe } from './requestFeatures/UserQueryParamsPipe';
-import UsersParams from './requestFeatures/UsersParams';
 
 @ApiTags('Users')
 @Controller('users')
@@ -212,16 +210,6 @@ export class UserController {
     @Query(new QueryParamsPipe()) filters: QueryParameters,
   ) {
     return this.userService.getFollowingRequests(id, filters);
-  }
-
-  @ApiOperation({ summary: "Get paged bot's messages requests" })
-  @ApiOkResponse({ type: '{rows:Subscription[],count:number}' })
-  @Get('/:id/bot-messages')
-  getBotMessagesByUser(
-    @Param('id') id: string,
-    @Query(new QueryParamsPipe()) filters: QueryParameters,
-  ) {
-    return this.userService.getAllBotMessage(id, filters);
   }
 
   @ApiOperation({

@@ -3,6 +3,8 @@ import { SubscriptionController } from './subscription.controller';
 import { SubscriptionService } from './subscription.service';
 import { getConnectionToken } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize';
+import { CreateSubsriptionDTO } from './dto/createSubscription.dto';
+import { BadRequestException, InternalServerErrorException } from '@nestjs/common';
 
 describe('SubscriptionController', () => {
   let controller: SubscriptionController;
@@ -36,4 +38,35 @@ describe('SubscriptionController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('createSubscription',() =>
+  {
+    const subDto:CreateSubsriptionDTO ={
+      ...subMock
+    }
+
+    it('should create subscription', async () => {
+        const subscription =  await controller.createSubscription(subDto,null);
+
+        expect(subsServiceStub.createSubscription).toHaveBeenCalledTimes(1);
+        expect(subsServiceStub.createSubscription).toBeCalledWith(subDto,null);
+        expect(subscription).toEqual(subMock);
+    });
+
+    it('should throw bad request exception', async () => {
+
+      jest.spyOn(subsServiceStub, 'createSubscription').mockImplementation(() => {
+        throw new BadRequestException(`Example error`);
+      });
+      expect(() => controller.createSubscription(subDto,null)).toThrow(BadRequestException);
+    });
+
+    it('should throw internal server error exception', async () => {
+
+      jest.spyOn(subsServiceStub, 'createSubscription').mockImplementation(() => {
+        throw new InternalServerErrorException(`Example error`);
+      });
+      expect(() => controller.createSubscription(subDto,null)).toThrow(InternalServerErrorException);
+    });
+  })
 });

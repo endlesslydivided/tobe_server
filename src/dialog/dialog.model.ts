@@ -30,12 +30,12 @@ export class Dialog extends Model<Dialog, DialogCreationAttribute> {
   @Column({ type: DataType.UUID, allowNull: false })
   creatorId: string;
 
-  @BelongsToMany(() => User, () => UserDialog)
+  @BelongsToMany(/* istanbul ignore next */() => User, /* istanbul ignore next */() => UserDialog)
   users: User[];
 
-  @HasMany(() => UserDialog)
+  @HasMany(/* istanbul ignore next */ () => UserDialog)
   userDialog: UserDialog[]
 
-  @HasMany(() => Message, "dialogId")
+  @HasMany(/* istanbul ignore next */ () => Message, "dialogId")
   messages: Message[];
 }

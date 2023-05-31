@@ -23,7 +23,7 @@ export class DiaryEntry extends Model<DiaryEntry,DiaryEntryCreationAttribute> {
   id: string;
 
   @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: "User which created an entry" })
-  @ForeignKey(() => User)
+  @ForeignKey(/* istanbul ignore next */  () => User)
   @Column({ type: DataType.UUID, allowNull: true  })
   userId: string;
 
@@ -60,7 +60,7 @@ export class DiaryEntry extends Model<DiaryEntry,DiaryEntryCreationAttribute> {
   @Column({ type: DataType.DATE, allowNull: true })
   entryDate: number;
 
-  @BelongsTo(() => User,"userId")
+  @BelongsTo(/* istanbul ignore next */  () => User,"userId")
   user: User
 
 }

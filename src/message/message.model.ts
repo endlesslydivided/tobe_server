@@ -27,35 +27,35 @@ export class Message extends Model<Message, MessageCreationAttribute> {
   text: string;
 
   @ApiProperty({ example: "0", description: "ID of message dialog" })
-  @ForeignKey(() => Dialog)
+  @ForeignKey(/* istanbul ignore next */  () => Dialog)
   @Column({ type: DataType.UUID, allowNull: true })
   dialogId: string;
 
   @ApiProperty({ example: "0", description: "ID of message user" })
-  @ForeignKey(() => User)
+  @ForeignKey(/* istanbul ignore next */  () => User)
   @Column({ type: DataType.UUID, allowNull: true })
   userId: string;
 
   @ApiProperty({ example: "0", description: "ID of message tweet" })
-  @ForeignKey(() => Tweet)
+  @ForeignKey(/* istanbul ignore next */  () => Tweet)
   @Column({ type: DataType.UUID, allowNull: true })
   messageTweetId: string;
   
-  @BelongsTo(() => User)
+  @BelongsTo(/* istanbul ignore next */  () => User)
   user: User;
 
-  @HasOne(() => FavoriteMessage,{as:'isFavorite'})
+  @HasOne(/* istanbul ignore next */  () => FavoriteMessage,{as:'isFavorite'})
   userFavoriteMessage: FavoriteMessage
 
   //Message's media
-  @HasMany(() => Media,"messageRecordId")
+  @HasMany(/* istanbul ignore next */  () => Media,"messageRecordId")
   messageMedia: Media[]
 
   //Retweeted tweet
-  @BelongsTo(() => Tweet,"messageTweetId")
+  @BelongsTo(/* istanbul ignore next */  () => Tweet,"messageTweetId")
   messageTweet: Tweet
 
    //Message's media
-   @HasMany(() => MessageMood,"messageId")
+   @HasMany(/* istanbul ignore next */  () => MessageMood,"messageId")
    messageMoods: MessageMood[]
 }

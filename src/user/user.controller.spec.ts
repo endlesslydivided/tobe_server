@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { Sequelize } from 'sequelize';
 import { TransactionInterceptor } from 'src/transactions/transaction.interceptor';
 import { getConnectionToken } from '@nestjs/sequelize';
+import { BadRequestException, InternalServerErrorException } from '@nestjs/common';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -114,7 +115,6 @@ describe('UserController', () => {
     getUserFeed:jest.fn().mockResolvedValue({rows:[tweetMock],count:1}),
     getUserMedia:jest.fn().mockResolvedValue({rows:[tweetMock],count:1}),
     getFollowingRequests:jest.fn(),
-    getAllBotMessage:jest.fn(),
     getFollowersRequests:jest.fn(),
     getDialogsByUser:jest.fn().mockResolvedValue({rows:[dialogMock],count:1}),
     createLikedTweet:jest.fn().mockResolvedValue(likedTweetMock),
@@ -127,11 +127,6 @@ describe('UserController', () => {
     getUsersTodayMental:jest.fn(),
   }
 
-  const transactionInterceptorMock={
-
-  }
-
-  
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -153,4 +148,86 @@ describe('UserController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+
+  describe('likeTweet',() =>
+  {
+    it('should create liked tweet', async () => {
+        const likedTweet =  await controller.likeTweet(userMock.id,tweetMock.id);
+
+        expect(usersServiceStub.createLikedTweet).toHaveBeenCalledTimes(1);
+        expect(usersServiceStub.createLikedTweet).toBeCalledWith(userMock.id,tweetMock.id);
+        expect(likedTweet).toEqual(likedTweetMock);
+    });
+
+    it('should throw bad request exception', async () => {
+
+      jest.spyOn(usersServiceStub, 'createLikedTweet').mockImplementation(() => {
+        throw new BadRequestException(`Example error`);
+      });
+      expect(() => controller.likeTweet(userMock.id,tweetMock.id)).toThrow(BadRequestException);
+    });
+
+    it('should throw internal server error exception', async () => {
+
+      jest.spyOn(usersServiceStub, 'createLikedTweet').mockImplementation(() => {
+        throw new InternalServerErrorException(`Example error`);
+      });
+      expect(() => controller.likeTweet(userMock.id,tweetMock.id)).toThrow(InternalServerErrorException);
+    });
+  })
+
+  describe('saveTweet',() =>
+  {
+    it('should create saved tweet', async () => {
+        const savedTweet =  await controller.saveTweet(userMock.id,tweetMock.id);
+
+        expect(usersServiceStub.createSavedTweet).toHaveBeenCalledTimes(1);
+        expect(usersServiceStub.createSavedTweet).toBeCalledWith(userMock.id,tweetMock.id);
+        expect(savedTweet).toEqual(savedTweetMock);
+    });
+
+    it('should throw bad request exception', async () => {
+
+      jest.spyOn(usersServiceStub, 'createSavedTweet').mockImplementation(() => {
+        throw new BadRequestException(`Example error`);
+      });
+      expect(() => controller.saveTweet(userMock.id,tweetMock.id)).toThrow(BadRequestException);
+    });
+
+    it('should throw internal server error exception', async () => {
+
+      jest.spyOn(usersServiceStub, 'createSavedTweet').mockImplementation(() => {
+        throw new InternalServerErrorException(`Example error`);
+      });
+      expect(() => controller.saveTweet(userMock.id,tweetMock.id)).toThrow(InternalServerErrorException);
+    });
+  })
+
+  describe('markFavoriteMessage',() =>
+  {
+    it('should create marked message', async () => {
+        const favoriteMessage =  await controller.markFavoriteMessage(userMock.id,messageMock.id);
+
+        expect(usersServiceStub.createFavoriteMessage).toHaveBeenCalledTimes(1);
+        expect(usersServiceStub.createFavoriteMessage).toBeCalledWith(userMock.id,messageMock.id);
+        expect(favoriteMessage).toEqual(favoriteMessageMock);
+    });
+
+    it('should throw bad request exception', async () => {
+
+      jest.spyOn(usersServiceStub, 'createFavoriteMessage').mockImplementation(() => {
+        throw new BadRequestException(`Example error`);
+      });
+      expect(() => controller.markFavoriteMessage(userMock.id,messageMock.id)).toThrow(BadRequestException);
+    });
+
+    it('should throw internal server error exception', async () => {
+
+      jest.spyOn(usersServiceStub, 'createFavoriteMessage').mockImplementation(() => {
+        throw new InternalServerErrorException(`Example error`);
+      });
+      expect(() => controller.markFavoriteMessage(userMock.id,messageMock.id)).toThrow(InternalServerErrorException);
+    });
+  })
 });

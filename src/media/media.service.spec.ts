@@ -6,6 +6,7 @@ import { getModelToken } from '@nestjs/sequelize';
 
 describe('MediaService', () => {
   let service: MediaService;
+  
   const mediaMock = {
     id:'b8ed5030-03a6-430a-ab9c-fe65ab3cc2c9',
     path:'/qwdafegferg.jpg',

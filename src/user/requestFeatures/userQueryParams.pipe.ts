@@ -1,6 +1,6 @@
 import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException } from '@nestjs/common';
-import UsersParams from './UsersParams';
-import UsersQueryParams from './UsersQueryParams';
+import UsersParams from './users.params';
+import UsersQueryParams from './usersQuery.params';
 
 
 @Injectable()
